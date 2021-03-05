@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require 'minitest/unit'
 require 'mocha/minitest'
 require './lib/cell'
 require './lib/board'
@@ -32,21 +31,57 @@ class SimulationTest < MiniTest::Test
   def test_it_can_randomly_activate_board_cells
     assert_equal true, @simulation.board.cells.flatten.all? { |cell| cell.is_active? == false }
 
-    Simulation.stubs(:rand).returns(1)
+    @simulation.stubs(:rand).returns(1)
     @simulation.set_active_cells
 
     assert_equal false, @simulation.board.cells.flatten.all? { |cell| cell.is_active? == false }
   end
 
   def test_it_can_check_cell_horizontal_neighbors
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+    
+    assert_equal 2, @simulation.target_horizontal_check
 
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[1][0].activate
+
+    assert_equal 1, simulation_2.target_horizontal_check
   end
 
   def test_it_can_check_cell_vertical_neighbors
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+    
+    assert_equal 2, @simulation.target_vertical_check
 
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[0][1].activate
+
+    assert_equal 1, simulation_2.target_vertical_check
   end
 
   def test_it_can_check_cell_diagonal_neighbors
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+    
+    assert_equal 4, @simulation.target_diagonal_check
 
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[0][2].activate
+
+    assert_equal 1, simulation_2.target_diagonal_check
+
+    simulation_2.board.cells[2][2].activate
+
+    assert_equal 2, simulation_2.target_diagonal_check
+
+    simulation_2.board.cells[0][0].activate
+
+    assert_equal 3, simulation_2.target_diagonal_check
+
+    simulation_2.board.cells[2][0].activate
+
+    assert_equal 3, simulation_2.target_diagonal_check
   end
 end
