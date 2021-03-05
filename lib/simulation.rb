@@ -13,4 +13,12 @@ class Simulation
   def target_center_cell
     @board.cells[@target_cell[:row]][@target_cell[:column]].target
   end
+
+  def set_active_cells
+    @board.cells.each do |cell_rows|
+      cell_rows.each do |cell|
+        cell.activate if rand(0..1) == 1
+      end
+    end
+  end
 end
