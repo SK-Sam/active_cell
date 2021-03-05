@@ -25,4 +25,13 @@ class Cell
   def target
     @target = true
   end
+
+  def render
+    case
+      when is_target? && is_active? then '$'
+      when is_target? then 'T'
+      when is_active? then '!'
+      else '.'
+    end
+  end
 end

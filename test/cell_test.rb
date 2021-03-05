@@ -32,4 +32,21 @@ class CellTest < MiniTest::Test
     
     assert_equal true, @cell.is_target?
   end
+
+  def test_it_can_render_itself_based_on_being_active_and_target
+    assert_equal '.', @cell.render
+
+    @cell.activate
+
+    assert_equal '!', @cell.render
+
+    @cell.target
+
+    assert_equal '$', @cell.render
+
+    cell_2 = Cell.new
+    cell_2.target
+
+    assert_equal 'T', cell_2.render
+  end
 end
