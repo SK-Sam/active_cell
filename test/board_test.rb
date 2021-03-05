@@ -37,11 +37,11 @@ class BoardTest < MiniTest::Test
 
   def test_it_can_render_default_board
     board_layout =
-    "  1 2 3\n" + 
-    "A . . .\n" + 
-    "B . . .\n" +
-    "C . . .\n"
-    
+    " 1 2 3\n" + 
+    "A . . . \n" + 
+    "B . . . \n" +
+    "C . . . \n"
+    #require 'pry'; binding.pry
     assert_equal board_layout, @board.render
   end
 end
