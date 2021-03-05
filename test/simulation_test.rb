@@ -22,11 +22,11 @@ class SimulationTest < MiniTest::Test
   end
 
   def test_it_can_target_center_cell
-    assert_equal false, @simulation.board[1][1].is_target?
+    assert_equal false, @simulation.board.cells[1][1].is_target?
 
     @simulation.target_center_cell
 
-    assert_equal true, @simulation.board[1][1].is_target?
+    assert_equal true, @simulation.board.cells[1][1].is_target?
   end
 
   def test_it_can_randomly_activate_board_cells
