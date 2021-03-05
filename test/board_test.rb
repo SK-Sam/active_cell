@@ -41,7 +41,19 @@ class BoardTest < MiniTest::Test
     "A . . . \n" + 
     "B . . . \n" +
     "C . . . \n"
-    #require 'pry'; binding.pry
+
     assert_equal board_layout, @board.render
+
+    @board.cells[1][1].target
+    @board.cells[2][1].activate
+    @board.cells[0][2].activate
+
+    board_layout_modified = 
+    " 1 2 3\n" + 
+    "A . . ! \n" + 
+    "B . T . \n" +
+    "C . ! . \n"
+
+    assert_equal board_layout_modified, @board.render
   end
 end
