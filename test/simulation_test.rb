@@ -14,10 +14,6 @@ class SimulationTest < MiniTest::Test
     assert_instance_of Simulation, @simulation
     assert_instance_of Board, @simulation.board
     assert_instance_of Cell, @simulation.board.cells.first.first
-    
-    # center_coordinate will be created as [1][1] by default due to 3x3 grid
-    center_coordinates = { row: 1, column: 1 }
-    assert_equal center_coordinates, @simulation.target_cell
   end
 
   def test_it_can_target_center_cell
