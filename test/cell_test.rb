@@ -7,15 +7,18 @@ class CellTest < MiniTest::Test
     @cell = Cell.new
   end
 
-  def test_it_can_instantiate_and_have_default_values
+  def test_it_can_instantiate
     assert_instance_of Cell, @cell
-    assert_equal false, @cell.target
   end
-
-  def test_it_can_check_if_its_active
+  
+  def test_it_can_check_if_its_active_and_has_default_value
     assert_equal false, @cell.is_active?
   end
-
+  
+  def test_it_can_check_if_its_target_and_has_default_value
+    assert_equal false, @cell.is_target?
+  end
+  
   def test_it_can_be_activated
     assert_equal false, @cell.is_active?
 
