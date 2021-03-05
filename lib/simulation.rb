@@ -4,13 +4,13 @@ class Simulation
 
   def initialize(row = 1, column = 1)
     @board = Board.new
-    # @target_cell = { 
-    #   row: target_cell.first,
-    #   column: target_cell.last
-    # }
     @target_row = row
     @target_column = column
     @active_cells_near_target_count = 0
+    @out_of_bounds_top = 0 
+    @out_of_bounds_left = 0 
+    @out_of_bounds_bottom = @board.cells.count - 1
+    @out_of_bounds_right = @board.cells[row].count - 1
   end
 
   def target_center_cell
@@ -43,50 +43,38 @@ class Simulation
   end
 
   def check_up
-    out_of_bounds_top = 0
-
-    if @target_row - 1 >= out_of_bounds_top && @board.cells[@target_row - 1][@target_column].is_active?
+    if @target_row - 1 >= @out_of_bounds_top && @board.cells[@target_row - 1][@target_column].is_active?
       @active_cells_near_target_count += 1
     end
   end
 
   def check_down
-    out_of_bounds_bottom = @board.cells.count - 1
-
-    if @target_row + 1 <= out_of_bounds_bottom && @board.cells[@target_row + 1][@target_column].is_active?
+    if @target_row + 1 <= @out_of_bounds_bottom && @board.cells[@target_row + 1][@target_column].is_active?
       @active_cells_near_target_count += 1
     end
   end
 
   def check_left
-    out_of_bounds_left = 0
-
-    if @target_column - 1 >= out_of_bounds_left && @board.cells[@target_row][@target_column - 1].is_active?
+    if @target_column - 1 >= @out_of_bounds_left && @board.cells[@target_row][@target_column - 1].is_active?
       @active_cells_near_target_count += 1
     end
   end
 
   def check_right
-    out_of_bounds_right = @board.cells[@target_row].count - 1
-
-    if @target_column + 1 <= out_of_bounds_right && @board.cells[@target_row][@target_column + 1].is_active?
+    if @target_column + 1 <= @out_of_bounds_right && @board.cells[@target_row][@target_column + 1].is_active?
       @active_cells_near_target_count += 1
     end
   end
 
   # Using guard clause to not even check the diagonal tops if out of bounds
   def check_diagonal_top
-    out_of_bounds_top = 0
-
-    return if @target_row - 1 < out_of_bounds_top
+    return if @target_row - 1 < @out_of_bounds_top
     @active_cells_near_target_count += 1 if @board.cells[@target_row - 1][@target_column - 1] != nil && @board.cells[@target_row - 1][@target_column - 1].is_active?
     @active_cells_near_target_count += 1 if @board.cells[@target_row - 1][@target_column + 1] != nil && @board.cells[@target_row - 1][@target_column + 1].is_active?
   end
 
   def check_diagonal_bottom
-    out_of_bounds_bottom = @board.cells.count - 1
-
-    return if @target_row + 1 > out_of_bounds_bottom
+    return if @target_row + 1 > @out_of_bounds_bottom
     @active_cells_near_target_count += 1 if @board.cells[@target_row + 1][@target_column - 1] != nil && @board.cells[@target_row + 1][@target_column - 1].is_active?
     @active_cells_near_target_count += 1 if @board.cells[@target_row + 1][@target_column + 1] != nil && @board.cells[@target_row + 1][@target_column + 1].is_active?
   end
