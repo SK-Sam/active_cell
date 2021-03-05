@@ -30,12 +30,12 @@ class SimulationTest < MiniTest::Test
   end
 
   def test_it_can_randomly_activate_board_cells
-    assert_equal true, @board.cells.flatten.all? { |cell| cell.is_active? == false }
+    assert_equal true, @simulation.board.cells.flatten.all? { |cell| cell.is_active? == false }
 
     Simulation.stubs(:rand).returns(1)
-    @simulation.set_simulation
+    @simulation.set_active_cells
 
-    assert_equal false, @board.cells.flatten.all? { |cell| cell.is_active? == false }
+    assert_equal false, @simulation.board.cells.flatten.all? { |cell| cell.is_active? == false }
   end
 
   def test_it_can_check_cell_horizontal_neighbors
