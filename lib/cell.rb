@@ -21,4 +21,8 @@ class Cell
   def activate
     @active = true
   end
+
+  def target
+    @target = true
+  end
 end
