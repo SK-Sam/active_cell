@@ -5,8 +5,12 @@ class Simulation
   def initialize(target_cell = [1, 1])
     @board = Board.new
     @target_cell = { 
-      row: target_cell[0],
-      column: target_cell[1] 
+      row: target_cell.first,
+      column: target_cell.last
     }
+  end
+
+  def target_center_cell
+    @board.cells[@target_cell[:row]][@target_cell[:column]].target
   end
 end
