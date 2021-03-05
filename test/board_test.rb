@@ -13,6 +13,7 @@ class BoardTest < MiniTest::Test
     assert_instance_of Array, @board.cells
     assert_equal 3, @board.cells.count
     assert_equal 9, @board.cells.flatten.count
+    assert_equal true, @board.cells.flatten.all? { |cell| cell.class == Cell }
   end
 
   def test_it_can_render_default_board
