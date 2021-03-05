@@ -40,48 +40,57 @@ class SimulationTest < MiniTest::Test
   def test_it_can_check_cell_horizontal_neighbors
     @simulation.stubs(:rand).returns(1)
     @simulation.set_active_cells
+    @simulation.target_horizontal_check
     
-    assert_equal 2, @simulation.target_horizontal_check
+    assert_equal 2, @simulation.active_cell_near_target_count
 
     simulation_2 = Simulation.new
     simulation_2.board.cells[1][0].activate
+    simulation_2.target_horizontal_check
 
-    assert_equal 1, simulation_2.target_horizontal_check
+    assert_equal 1, simulation_2.active_cell_near_target_count
   end
 
   def test_it_can_check_cell_vertical_neighbors
     @simulation.stubs(:rand).returns(1)
     @simulation.set_active_cells
+    @simulation.target_vertical_check
     
-    assert_equal 2, @simulation.target_vertical_check
+    assert_equal 2, @simulation.active_cell_near_target_count
 
     simulation_2 = Simulation.new
     simulation_2.board.cells[0][1].activate
+    simulation_2.target_vertical_check
 
-    assert_equal 1, simulation_2.target_vertical_check
+    assert_equal 1, simulation_2.active_cell_near_target_count
   end
 
   def test_it_can_check_cell_diagonal_neighbors
     @simulation.stubs(:rand).returns(1)
     @simulation.set_active_cells
+    @simulation.target_diagonal_check
     
-    assert_equal 4, @simulation.target_diagonal_check
+    assert_equal 4, @simulation.active_cell_near_target_count
 
     simulation_2 = Simulation.new
     simulation_2.board.cells[0][2].activate
+    simulation_2.target_diagonal_check
 
-    assert_equal 1, simulation_2.target_diagonal_check
+    assert_equal 1, simulation_2.active_cell_near_target_count
 
     simulation_2.board.cells[2][2].activate
+    simulation_2.target_diagonal_check
 
-    assert_equal 2, simulation_2.target_diagonal_check
+    assert_equal 2, simulation_2.active_cell_near_target_count
 
     simulation_2.board.cells[0][0].activate
+    simulation_2.target_diagonal_check
 
-    assert_equal 3, simulation_2.target_diagonal_check
+    assert_equal 3, simulation_2.active_cell_near_target_count
 
     simulation_2.board.cells[2][0].activate
+    simulation_2.target_diagonal_check
 
-    assert_equal 3, simulation_2.target_diagonal_check
+    assert_equal 3, simulation_2.active_cell_near_target_count
   end
 end
