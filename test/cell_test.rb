@@ -47,6 +47,6 @@ class CellTest < MiniTest::Test
     cell_2 = Cell.new
     cell_2.target
 
-    assert_equal 'T', cell_2.target
+    assert_equal 'T', cell_2.render
   end
 end
