@@ -17,7 +17,7 @@ class SimulationTest < MiniTest::Test
     assert_instance_of Cell, @simulation.board.cells.first.first
     
     # center_coordinate will be created as [1][1] by default due to 3x3 grid
-    center_coordinates = { row : 1, column: 1 }
+    center_coordinates = { row: 1, column: 1 }
     assert_equal center_coordinates, @simulation.target_cell
   end
 
@@ -36,5 +36,17 @@ class SimulationTest < MiniTest::Test
     @simulation.set_simulation
 
     assert_equal false, @board.cells.flatten.all? { |cell| cell.is_active? == false }
+  end
+
+  def test_it_can_check_cell_horizontal_neighbors
+
+  end
+
+  def test_it_can_check_cell_vertical_neighbors
+
+  end
+
+  def test_it_can_check_cell_diagonal_neighbors
+
   end
 end
