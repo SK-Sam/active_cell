@@ -14,6 +14,15 @@ class Board
      }
   end
 
+  # Render will use all_cells_evaluated to gather
+  # all individual Cell Render values and interpolate
+  # them into User friendly CLI board. 2d Array turned
+  # into one string formatted with columns = numbers
+  # and letters = rows
+  # EX:  1 2 3
+  #    A . . !
+  #    B . T .
+  #    C . ! .
   def render
     layout_number_string = " 1 2 3\n"
     board_results = ['A', 'B', 'C']
