@@ -109,6 +109,34 @@ class SimulationTest < MiniTest::Test
     assert_equal 1, simulation_2.active_cells_near_target_count
   end
 
+  def test_it_can_check_diagonal_top_neighbors
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+    @simulation.check_diagonal_top
+    
+    assert_equal 2, @simulation.active_cells_near_target_count
+
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[0][2].activate
+    simulation_2.check_diagonal_top
+
+    assert_equal 1, simulation_2.active_cells_near_target_count
+  end
+
+  def test_it_can_check_diagonal_bottom_neighbors
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+    @simulation.check_diagonal_bottom
+    
+    assert_equal 2, @simulation.active_cells_near_target_count
+
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[2][2].activate
+    simulation_2.check_diagonal_bottom
+
+    assert_equal 1, simulation_2.active_cells_near_target_count
+  end
+
   def test_it_can_check_cell_diagonal_neighbors
     @simulation.stubs(:rand).returns(1)
     @simulation.set_active_cells
@@ -125,16 +153,12 @@ class SimulationTest < MiniTest::Test
     simulation_2.board.cells[2][2].activate
     simulation_2.target_diagonal_check
 
-    assert_equal 2, simulation_2.active_cells_near_target_count
+    simulation_3 = Simulation.new
+    simulation_3.board.cells[0][2].activate
+    simulation_3.board.cells[2][2].activate
+    simulation_3.board.cells[0][0].activate
+    simulation_3.target_diagonal_check
 
-    simulation_2.board.cells[0][0].activate
-    simulation_2.target_diagonal_check
-
-    assert_equal 3, simulation_2.active_cells_near_target_count
-
-    simulation_2.board.cells[2][0].activate
-    simulation_2.target_diagonal_check
-
-    assert_equal 3, simulation_2.active_cells_near_target_count
+    assert_equal 3, simulation_3.active_cells_near_target_count
   end
 end
