@@ -1,3 +1,13 @@
+# Simulation acts as an all-knowing entity that is setting up and initializing
+# the board. The Simulation class is interacting heavily with a board and cells
+# because it knows the rules where a Board shouldn't carry that information
+# The rules are simply just bounds of the Board being initialized, being
+# highest, lowest, most left, and most right points. A simulation should
+# be created everytime a User would like to run a new randomly generated
+# "run" of this situation, being that there will be a target cell and
+# active cells nearby it which can be detected through diagonal, horizontal,
+# and vertical checks
+
 class Simulation
   attr_reader :board,
               :active_cells_near_target_count
