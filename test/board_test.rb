@@ -14,4 +14,14 @@ class BoardTest < MiniTest::Test
     assert_equal 3, @board.cells.count
     assert_equal 9, @board.cells.flatten.count
   end
+
+  def test_it_can_render_default_board
+    board_layout =
+    "  1 2 3\n" + 
+    "A . . .\n" + 
+    "B . . .\n" +
+    "C . . .\n"
+    
+    assert_equal board_layout, @board.render
+  end
 end
