@@ -1,6 +1,8 @@
 # Active Cell
 
 ## Important Notes
+If tests do not work via running `ruby test/{testfilename}.rb` and you would like to see it run, I have created a Docker Image to run all the tests via `all_tests.rb`. Please have `docker` installed and run the command `docker run -p 4567:4567 horishinsamu/active_cell`.
+
 Tests may not run locally based on Gem conflicts vs your local machine. Please use `bundler 2.1.4` and `ruby 2.5.3` if you're getting any GemConflict issues. I'm including a link to the pictures of all tests passing via MiniTest here. Running the `runner.rb` from the root directory will still work fine to run the program's CLI.
 
 ## Description
