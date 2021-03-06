@@ -36,6 +36,7 @@ class Simulation
   end
 
   def check_all_target_neighbors
+    @active_cells_near_target_count = 0
     target_horizontal_check
     target_vertical_check
     target_diagonal_check
