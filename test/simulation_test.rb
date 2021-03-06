@@ -34,47 +34,31 @@ class SimulationTest < MiniTest::Test
   end
 
   def test_it_can_check_up
-    @simulation.check_up
-
-    assert_equal 0, @simulation.active_cells_near_target_count
+    assert_equal false, @simulation.check_up
 
     @simulation.board.cells[0][1].activate
-    @simulation.check_up
-
-    assert_equal 1, @simulation.active_cells_near_target_count
+    assert_equal true, @simulation.check_up
   end
 
   def test_it_can_check_down
-    @simulation.check_down
-
-    assert_equal 0, @simulation.active_cells_near_target_count
+    assert_equal false, @simulation.check_down
 
     @simulation.board.cells[2][1].activate
-    @simulation.check_down
-
-    assert_equal 1, @simulation.active_cells_near_target_count
+    assert_equal true, @simulation.check_down
   end
 
   def test_it_can_check_left
-    @simulation.check_left
-
-    assert_equal 0, @simulation.active_cells_near_target_count
+    assert_equal false, @simulation.check_left
 
     @simulation.board.cells[1][0].activate
-    @simulation.check_left
-
-    assert_equal 1, @simulation.active_cells_near_target_count
+    assert_equal true, @simulation.check_left
   end
 
   def test_it_can_check_right
-    @simulation.check_right
-
-    assert_equal 0, @simulation.active_cells_near_target_count
+    assert_equal false, @simulation.check_right
 
     @simulation.board.cells[1][2].activate
-    @simulation.check_right
-
-    assert_equal 1, @simulation.active_cells_near_target_count
+    assert_equal true, @simulation.check_right
   end
 
   def test_it_can_check_cell_horizontal_neighbors
@@ -168,5 +152,53 @@ class SimulationTest < MiniTest::Test
     simulation_2.board.cells[2][2].activate
 
     assert_equal 1, simulation_2.check_all_target_neighbors
+  end
+
+  def test_it_can_check_diagonal_top_right
+    assert_equal false, @simulation.check_diagonal_top_right
+
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+    assert_equal true, @simulation.check_diagonal_top_right
+
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[0][2].activate
+    assert_equal true, simulation_2.check_diagonal_top_right
+  end
+
+  def test_it_can_check_diagonal_top_left
+    assert_equal false, @simulation.check_diagonal_top_left
+
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+    assert_equal true, @simulation.check_diagonal_top_left
+
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[0][0].activate
+    assert_equal true, simulation_2.check_diagonal_top_left
+  end
+
+  def test_it_can_check_diagonal_bottom_left
+    assert_equal false, @simulation.check_diagonal_bottom_left
+
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+    assert_equal true, @simulation.check_diagonal_bottom_left
+
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[2][0].activate
+    assert_equal true, simulation_2.check_diagonal_bottom_left
+  end
+
+  def test_it_can_check_diagonal_bottom_right
+    assert_equal false, @simulation.check_diagonal_bottom_right
+
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+    assert_equal true, @simulation.check_diagonal_bottom_right
+
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[2][2].activate
+    assert_equal true, simulation_2.check_diagonal_bottom_right
   end
 end
