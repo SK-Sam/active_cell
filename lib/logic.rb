@@ -1,11 +1,22 @@
+# Logic deals with user inputs and validations of inputs throughout the lifespan
+# of a simulation. Logic will create new simulations and will support the runner file
+# with moving user input into the simulation.
+
+# Side note: user_choice_simulation was a stretch goal that was half complete
+# It has not been tested well enough to uncomment and include into the core.
+
 class Logic
   class << self
+
+    # Starting point of runner file
     def start
       puts "=============================================================================================\n\n"
       puts "Here is a sample Board Simulation where the center cell is the focus cell."
       instructions
     end
 
+    # Checkpoint is where all user-input based methods being called lead to
+    # Essentially the controller or router
     def checkpoint
       ask_user_for_input
       user_input = gets.chomp.downcase
@@ -15,6 +26,8 @@ class Logic
       return if user_input == 'q'
     end
 
+    # Center Focus Simulation will only create a simulation based on the center cell being the 
+    # target cell and will randomly generate active cells throughout the Board, even in the center.
     def center_focus_simulation
       simulation = Simulation.new
       simulation.target_center_cell
@@ -23,6 +36,23 @@ class Logic
       puts "There are #{simulation.check_all_target_neighbors} active neighbor cells.\n\n"
       checkpoint
     end
+
+    def instructions
+      puts "Random cells will be activated chosen which the focus cell should be aware of.\n\n"
+      puts "There are a few symbols to keep track of. A ! symbol means a cell is active. T symbol is the focus/target cell"
+      puts "A $ symbol means the target/focus cell is ALSO active. The . symbols are empty and non-active cells."
+      puts "A $ cell should NOT count itself as part of the neighbor active cell count.\n\n"
+      checkpoint
+    end
+    
+    def ask_user_for_input
+      puts "Type 'c' into your terminal and hit enter if you'd like to create another simulation focused on the center cell."
+      #puts "Type 't' into your terminal and hit enter if you'd like to enter your own target cell coordinates."
+      puts "Type 'i' if you need to see the instructions  and sample simulation again."
+      puts "Type 'q' if you would like to exit the simulation generator.\n\n"
+    end
+
+    # Attempt to complete an extension, untested and will leave commented.
 
     # def user_choice_simulation
     #   row = user_choice_input_validation_row
@@ -35,22 +65,7 @@ class Logic
     #   puts "There are #{simulation.check_all_target_neighbors} active neighbor cells.\n\n"
     #   checkpoint
     # end
-
-    def instructions
-      puts "Random cells will be activated chosen which the focus cell should be aware of.\n\n"
-      puts "There are a few symbols to keep track of. A ! symbol means a cell is active. T symbol is the focus/target cell"
-      puts "A $ symbol means the target/focus cell is ALSO active. The . symbols are empty and non-active cells."
-      puts "A $ cell should NOT count itself as part of the neighbor active cell count.\n\n"
-      checkpoint
-    end
-
-    def ask_user_for_input
-      puts "Type 'c' into your terminal and hit enter if you'd like to create another simulation focused on the center cell."
-      #puts "Type 't' into your terminal and hit enter if you'd like to enter your own target cell coordinates."
-      puts "Type 'i' if you need to see the instructions  and sample simulation again."
-      puts "Type 'q' if you would like to exit the simulation generator.\n\n"
-    end
-
+    
     # def user_choice_input_validation_row
     #   puts "Please enter a number that corresponds to the horizontal coordinate, row a, b, or c\n"
     #   user_row = gets.chomp.downcase
