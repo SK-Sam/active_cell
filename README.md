@@ -2,13 +2,6 @@
 
 ## Important Notes
 Tests may not run locally based on Gem conflicts vs your local machine. I'm including a link to the pictures of all tests passing via MiniTest here. Running the `runner.rb` from the root directory will still work fine to run the program's CLI.
-## Table of Contents
-
--   [Important Notes](#important-notes)
--   [Description](#description)
--   [Testing](#testing)
--   [Local Setup](#local-setup)
--   [Authors](#authors)
 
 ## Description
 This exercise is based on a 3x3 grid which counts cells around the "focus/target" cell. The core prompt asks to place the target cell in the center of the grid given the context of a cell residing in a 3x3 grid with 8 neighbors. As of right now, only the core functionality was tackled to completion. 100% tests passing for each Class with the `runner.rb` replicating any 3x3 grid scenario by generating grids with randomly placed active cells.
@@ -21,7 +14,9 @@ This program is prepped for larger grids because the grid bounds are set dynamic
 
 ## Testing
 
-Testing is done through running the command `ruby test/{insert test file here}` in Terminal from the root directory of the project. Minitest was used along with Mocha to mock and stub random numbers. Majority of the tests were used to dream drive the development of the Classes and how each method works. Outside of user-input, the entire project followed TDD. Please refer to the [Important Notes](#important-notes) if there are any issues with running tests.
+Testing is done through running the command `ruby test/{insert test file here}` in Terminal from the root directory of the project. Minitest was used along with Mocha to mock and stub random numbers. Majority of the tests were used to dream drive the development of the Classes and how each method works. Outside of user-input, the entire project followed TDD. Please refer to the Important Notes if there are any issues with running tests.
+
+![Tests Run Locally](https://github.com/SK-Sam/active_cell/blob/main/images/tests_passing.png)
 
 ## Local Set Up
 
