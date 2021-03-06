@@ -1,7 +1,7 @@
 # Active Cell
 
 ## Important Notes
-Tests may not run locally based on Gem conflicts vs your local machine. I'm including a link to the pictures of all tests passing via MiniTest here. Running the `runner.rb` from the root directory will still work fine to run the program's CLI.
+Tests may not run locally based on Gem conflicts vs your local machine. Please use `bundler 2.1.4` and `ruby 2.5.3` if you're getting any GemConflict issues. I'm including a link to the pictures of all tests passing via MiniTest here. Running the `runner.rb` from the root directory will still work fine to run the program's CLI.
 
 ## Description
 This exercise is based on a 3x3 grid which counts cells around the "focus/target" cell. The core prompt asks to place the target cell in the center of the grid given the context of a cell residing in a 3x3 grid with 8 neighbors. User can also target a cell based on input within the 3x3 grid. 100% tests passing for each Class with the `runner.rb` replicating any 3x3 grid scenario by generating grids with randomly placed active cells.
@@ -22,5 +22,5 @@ Testing is done through running the command `ruby test/{insert test file here}` 
 
   - `git clone https://github.com/SK-Sam/active_cell`
   - `cd` to where you cloned the repo
-  - Tests can be run on my end using `ruby >= 2.5.3` and running `bundler` to install testing Gems.
+  - Tests can be run on my end using `ruby >= 2.5.3` and running `bundler` OR `bundle` to install testing Gems. If there are any issues, please try using `bundler 2.1.4`.
   - To run the program, from the root directory run `ruby runner.rb` in your terminal. Follow instructions on CLI. 
