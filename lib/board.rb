@@ -24,7 +24,7 @@ class Board
   #    B . T .
   #    C . ! .
   def render
-    layout_number_string = " 1 2 3\n"
+    layout_number_string = "  1 2 3\n"
     board_results = ['A', 'B', 'C']
 
     all_cells_evaluated.each_with_index do |row, index|
