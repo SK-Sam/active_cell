@@ -35,14 +35,20 @@ class Simulation
     end
   end
 
+  def check_all_target_neighbors
+    @active_cells_near_target_count = 0
+    target_horizontal_check
+    target_vertical_check
+    target_diagonal_check
+    @active_cells_near_target_count
+  end
+
   def target_horizontal_check
-    @active_cell_near_target_count = 0
     check_left
     check_right
   end
 
   def target_vertical_check
-    @active_cell_near_target_count = 0
     check_up
     check_down
   end

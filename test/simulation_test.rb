@@ -157,4 +157,16 @@ class SimulationTest < MiniTest::Test
 
     assert_equal 3, simulation_3.active_cells_near_target_count
   end
+
+  def test_it_can_check_all_of_targets_neighbor_cells
+    @simulation.stubs(:rand).returns(1)
+    @simulation.set_active_cells
+
+    assert_equal 8, @simulation.check_all_target_neighbors
+
+    simulation_2 = Simulation.new
+    simulation_2.board.cells[2][2].activate
+
+    assert_equal 1, simulation_2.check_all_target_neighbors
+  end
 end

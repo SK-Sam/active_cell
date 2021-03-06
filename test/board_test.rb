@@ -37,7 +37,7 @@ class BoardTest < MiniTest::Test
 
   def test_it_can_render_default_board
     board_layout =
-    " 1 2 3\n" + 
+    "  1 2 3\n" + 
     "A . . . \n" + 
     "B . . . \n" +
     "C . . . \n"
@@ -49,7 +49,7 @@ class BoardTest < MiniTest::Test
     @board.cells[0][2].activate
 
     board_layout_modified = 
-    " 1 2 3\n" + 
+    "  1 2 3\n" + 
     "A . . ! \n" + 
     "B . T . \n" +
     "C . ! . \n"
